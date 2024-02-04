@@ -27,7 +27,7 @@ export const signin = async (req, res, next) => {
         if(!validPassword) return next(errorHandler(404, "Contraseña incorrecta"));
         const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET);
         const {password: pass, ...otherFields} = validUser._doc;
-        res.cookie("token", token, {
+        res.cookie("access_token", token, {
             httpOnly: true
         }).status(200).json(otherFields);
     } catch (error) {
