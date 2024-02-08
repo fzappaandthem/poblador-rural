@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const listingSchema = new mongoose.Schema(
 {
-    title: {
+    recipient: {
         type: String,
         required: true,
     },
-    description: {
+    message: {
         type: String,
         required: true,
     },
@@ -14,195 +14,195 @@ const listingSchema = new mongoose.Schema(
         type: String,
         required: true,
     },
-    repeticiones: {
+    repeats: {
         type: Number,
         required: true,
     },
-    lun7: {
+    Mon0700: {
         type: Boolean,
         required: true,
     },
-    lun1130: {
+    Mon1130: {
         type: Boolean,
         required: true,
     },
-    lun13: {
+    Mon1300: {
         type: Boolean,
         required: true,
     },
-    lun1630: {
+    Mon1630: {
         type: Boolean,
         required: true,
     },
-    lun19: {
+    Mon1900: {
         type: Boolean,
         required: true,
     },
-    lun21: {
+    Mon2100: {
         type: Boolean,
         required: true,
     },
-    lun7: {
+    Mon0700: {
         type: Boolean,
         required: true,
     },
-    lun1130: {
+    Mon1130: {
         type: Boolean,
         required: true,
     },
-    lun13: {
+    Mon1300: {
         type: Boolean,
         required: true,
     },
-    lun1630: {
+    Mon1630: {
         type: Boolean,
         required: true,
     },
-    lun19: {
+    Mon1900: {
         type: Boolean,
         required: true,
     },
-    lun21: {
+    Mon2100: {
         type: Boolean,
         required: true,
     },
-    mar7: {
+    Tue0700: {
         type: Boolean,
         required: true,
     },
-    mar1130: {
+    Tue1130: {
         type: Boolean,
         required: true,
     },
-    mar13: {
+    Tue1300: {
         type: Boolean,
         required: true,
     },
-    mar1630: {
+    Tue1630: {
         type: Boolean,
         required: true,
     },
-    mar19: {
+    Tue1900: {
         type: Boolean,
         required: true,
     },
-    mar21: {
+    Tue2100: {
         type: Boolean,
         required: true,
     },
-    mie7: {
+    Wed0700: {
         type: Boolean,
         required: true,
     },
-    mie1130: {
+    Wed1130: {
         type: Boolean,
         required: true,
     },
-    mie13: {
+    Wed1300: {
         type: Boolean,
         required: true,
     },
-    mie1630: {
+    Wed1630: {
         type: Boolean,
         required: true,
     },
-    mie19: {
+    Wed1900: {
         type: Boolean,
         required: true,
     },
-    mie21: {
+    Wed2100: {
         type: Boolean,
         required: true,
     },
-    jue7: {
+    Thu0700: {
         type: Boolean,
         required: true,
     },
-    jue1130: {
+    Thu1130: {
         type: Boolean,
         required: true,
     },
-    jue13: {
+    Thu1300: {
         type: Boolean,
         required: true,
     },
-    jue1630: {
+    Thu1630: {
         type: Boolean,
         required: true,
     },
-    jue19: {
+    Thu1900: {
         type: Boolean,
         required: true,
     },
-    jue21: {
+    Thu2100: {
         type: Boolean,
         required: true,
     },
-    vie7: {
+    Fri0700: {
         type: Boolean,
         required: true,
     },
-    vie1130: {
+    Fri1130: {
         type: Boolean,
         required: true,
     },
-    vie13: {
+    Fri1300: {
         type: Boolean,
         required: true,
     },
-    vie1630: {
+    Fri1630: {
         type: Boolean,
         required: true,
     },
-    vie19: {
+    Fri1900: {
         type: Boolean,
         required: true,
     },
-    vie21: {
+    Fri2100: {
         type: Boolean,
         required: true,
     },
-    sab7: {
+    Sat0700: {
         type: Boolean,
         required: true,
     },
-    sab1130: {
+    Sat1130: {
         type: Boolean,
         required: true,
     },
-    sab13: {
+    Sat1300: {
         type: Boolean,
         required: true,
     },
-    sab1630: {
+    Sat1630: {
         type: Boolean,
         required: true,
     },
-    sab19: {
+    Sat1900: {
         type: Boolean,
         required: true,
     },
-    sab21: {
+    Sat2100: {
         type: Boolean,
         required: true,
     },
-    dom7: {
+    Sun0700: {
         type: Boolean,
         required: true,
     },
-    dom1130: {
+    Sun1130: {
         type: Boolean,
         required: true,
     },
-    dom13: {
+    Sun1300: {
         type: Boolean,
         required: true,
     },
-    dom19: {
+    Sun1900: {
         type: Boolean,
         required: true,
     },
-    dom21: {
+    Sun2100: {
         type: Boolean,
         required: true,
     },
