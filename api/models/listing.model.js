@@ -14,8 +14,12 @@ const listingSchema = new mongoose.Schema(
         type: String,
         required: true,
     },
-    repeats: {
+    repetitions: {
         type: Number,
+        required: true,
+    },
+    isEnabled: {
+        type: Boolean,
         required: true,
     },
     Mon0700: {
