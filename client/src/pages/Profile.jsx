@@ -38,6 +38,25 @@ export default function Profile() {
     }
   }, [file]);
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
@@ -213,8 +232,7 @@ export default function Profile() {
         >
           Eliminar cuenta
         </span>
-        <span className='text-red-700 cursor-pointer'>Cerrar sesión</span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
+        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Cerrar sesión</span>
       </div>
 
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
@@ -245,7 +263,12 @@ export default function Profile() {
               </Link>
 
               <div className='flex flex-col item-center'>
-                <button className='text-red-700 uppercase'>Eliminar</button>
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className='text-red-700 uppercase'
+                >
+                  Eliminar
+                </button>
                 <button className='text-green-700 uppercase'>Editar</button>
               </div>
             </div>
