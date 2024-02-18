@@ -17,6 +17,7 @@ import {
   signOutUserStart,
 } from '../redux/user/userSlice.js';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -28,6 +29,8 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
 
   useEffect(() => {
     if (file) {
@@ -35,6 +38,21 @@ export default function Profile() {
     }
   }, [file]);
 
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+
+      setUserListings(data);
+    } catch (error) {
+      setShowListingsError(true);
+    }
+  };
   const handleSignOut = async () => {
 
     try {
@@ -203,6 +221,36 @@ export default function Profile() {
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'Usuario actualizado!' : ''}
       </p>
+      <button onClick={handleShowListings} className='text-green-700 w-full'>
+        Mostrar mensajes al poblador
+      </button>
+      <p className='text-red-700 mt-5'>
+        {showListingsError ? 'Error showing listings' : ''}
+      </p>
+
+      {userListings &&
+        userListings.length > 0 &&
+        <div className="flex flex-col gap-4">
+          <h1 className='text-center mt-7 text-2xl font-semibold'>Tus mensajes</h1>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className='border rounded-lg p-3 flex justify-between items-center gap-4'
+            >
+              <Link
+                className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.recipient}</p>
+              </Link>
+
+              <div className='flex flex-col item-center'>
+                <button className='text-red-700 uppercase'>Eliminar</button>
+                <button className='text-green-700 uppercase'>Editar</button>
+              </div>
+            </div>
+          ))}
+        </div>}
     </div>
   )
 }

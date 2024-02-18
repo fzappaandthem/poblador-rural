@@ -1,3 +1,9 @@
+
+"createdAt": "2024-02-18T00:50:34.247Z",
+"updatedAt": "2024-02-18T00:50:34.247Z",
+
+ojo con esa!!! a las 21:50 dice 18T00:50:34.247Z
+ es decir que habría que sumarle 3 más
 /**
  * 
  * campos de un poblador rural
