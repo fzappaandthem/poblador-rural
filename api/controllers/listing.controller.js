@@ -1,6 +1,8 @@
 import Listing from '../models/listing.model.js';
 import { errorHandler } from '../utils/error.js';
 
+
+
 export const createListing = async (req, res, next) => {
   try {
     const listing = await Listing.create(req.body);
@@ -9,6 +11,21 @@ export const createListing = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getListing = async (req, res, next) => {
+  try {
+    const listing = await Listing.findById(req.params.id);
+    console.log('listing.updatedAt: ' + listing.updatedAt);
+    const updatedAtDate = new Date(listing.updatedAt);
+    console.log('updatedAtDate: ' + updatedAtDate);
+    if (!listing) {
+      return next(errorHandler(404, 'Mensaje al poblador no encontrado!'));
+    }
+    res.status(200).json(listing);
+  } catch (error) {
+    next(error);
+  }
+};  
 
 export const updateListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);

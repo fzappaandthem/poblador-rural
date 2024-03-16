@@ -210,6 +210,18 @@ const listingSchema = new mongoose.Schema(
         type: Boolean,
         required: true,
     },
+    fechaPrimerEmision: {
+        type: Date,
+        required: true,
+    },
+    fechaUltimaEmision: {
+        type: Date,
+        required: true,
+    },
+    cantEmisionesSemanales: {
+        type: Number,
+        required: true,
+    }
 }, {timestamps: true});
 
 const Listing = mongoose.model('Listing', listingSchema);

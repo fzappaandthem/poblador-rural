@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function CreatePoblador() {
-
+export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const params = useParams();
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     recipient: '',
     message: '',
@@ -53,226 +55,232 @@ export default function CreatePoblador() {
     Sun1300: false,
     Sun1630: false,
     Sun1900: false,
-    Sun2100: false, 
-    fechaUltimaEmision: new Date(),
+    Sun2100: false,
     fechaPrimerEmision: new Date(),
-    cantEmisionesSemanales: 3,
+    fechaUltimaEmision: new Date(),
+    cantEmisionesSemanales: 0,
   });
-
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
   console.log(formData);
+  
 
   useEffect(() => {
+    const fetchListing = async () => {
+      const listingId = params.listingId;
+      const res = await fetch(`/api/listing/get/${listingId}`);
+      const data = await res.json();
+
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setFormData(data);
+    };
+
+    fetchListing();
     const days = [
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
     ]
     const hours = [
         "0700", "1130", "1300", "1630", "1900", "2100"
     ]
+    
     const getTimeWithoutColon = (time) => {
         return time.slice(0, 2)+time.slice(3, 5);
     }
     
     const getProximas3Horas = (horaActual, diaActual) => {
     
-        let proximas3Horas = [];
-        let proximaEdicion = 0;
-    
-        while( proximaEdicion < hours.length && hours[proximaEdicion] < horaActual ) {
-            proximaEdicion++;
-        }
-    
-        // son las 13 o menos
-        if(hours.length > proximaEdicion + 2) 
-        {
-            if(diaActual === 0)
-            {
-              if(proximaEdicion === 0){
-                proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+2]];
-              }
-              else if(proximaEdicion === 1) 
-              {
-                proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+3]];
-              }
-              else if(proximaEdicion === 2)
-              {
-                proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+2], hours[proximaEdicion+3]];
-              }
-              else if ( proximaEdicion === 3 )
-              {
-                proximas3Horas = [hours[proximaEdicion+1], hours[proximaEdicion+2], hours[0]];
-              }
-            } 
-            else 
-            {
+      let proximas3Horas = [];
+      let proximaEdicion = 0;
+  
+      while( proximaEdicion < hours.length && hours[proximaEdicion] < horaActual ) {
+          proximaEdicion++;
+      }
+  
+      // son las 13 o menos
+      if(hours.length > proximaEdicion + 2) 
+      {
+          if(diaActual === 0)
+          {
+            if(proximaEdicion === 0){
               proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+2]];
             }
-        } 
-        //son las 1630
-        else if (hours.length > proximaEdicion + 1) 
-        {
-            proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[0]];
-        } 
-        else if ( hours.length > proximaEdicion)
-        {
-            proximas3Horas = [hours[proximaEdicion], hours[0], hours[1]];
-        }
-        else 
-        {
-            proximas3Horas = [hours[0], hours[1], hours[2]];
-        }
-    
-        return proximas3Horas;
-    
-    }
-    
-    const getProximos3dias = (dayParam, horaActualSinDosPuntos) => {
-        const diaActualIndexInDaysArr = days.indexOf(dayParam);
-        const proximas3Horas = getProximas3Horas(horaActualSinDosPuntos, diaActualIndexInDaysArr);
-    
-        if(proximas3Horas[0] < horaActualSinDosPuntos && horaActualSinDosPuntos > "0700") {
-          if(diaActualIndexInDaysArr === 6) {
-            return [days[0], days[0], days[0]];
+            else if(proximaEdicion === 1) 
+            {
+              proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+3]];
+            }
+            else if(proximaEdicion === 2)
+            {
+              proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+2], hours[proximaEdicion+3]];
+            }
+            else if ( proximaEdicion === 3 )
+            {
+              proximas3Horas = [hours[proximaEdicion+1], hours[proximaEdicion+2], hours[0]];
+            }
+          } 
+          else 
+          {
+            proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+2]];
           }
-          return [days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
+      } 
+      //son las 1630
+      else if (hours.length > proximaEdicion + 1) 
+      {
+          proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[0]];
+      } 
+      else if ( hours.length > proximaEdicion)
+      {
+          proximas3Horas = [hours[proximaEdicion], hours[0], hours[1]];
+      }
+      else 
+      {
+          proximas3Horas = [hours[0], hours[1], hours[2]];
+      }
+  
+      return proximas3Horas;
+  
+  }
+  
+  const getProximos3dias = (dayParam, horaActualSinDosPuntos) => {
+      const diaActualIndexInDaysArr = days.indexOf(dayParam);
+      const proximas3Horas = getProximas3Horas(horaActualSinDosPuntos, diaActualIndexInDaysArr);
+  
+      if(proximas3Horas[0] < horaActualSinDosPuntos && horaActualSinDosPuntos > "0700") {
+        if(diaActualIndexInDaysArr === 6) {
+          return [days[0], days[0], days[0]];
         }
-        else if(proximas3Horas[1] < horaActualSinDosPuntos)
-        {
-          if(diaActualIndexInDaysArr === 6) {
-            return [days[diaActualIndexInDaysArr], days[0], days[0]];
-          }
-            return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
+        return [days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
+      }
+      else if(proximas3Horas[1] < horaActualSinDosPuntos)
+      {
+        if(diaActualIndexInDaysArr === 6) {
+          return [days[diaActualIndexInDaysArr], days[0], days[0]];
         }
-        else if(proximas3Horas[2] < horaActualSinDosPuntos)
-        {
-          if(diaActualIndexInDaysArr === 6) {
-            return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[0]];
-          }
-            return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1]];
+          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
+      }
+      else if(proximas3Horas[2] < horaActualSinDosPuntos)
+      {
+        if(diaActualIndexInDaysArr === 6) {
+          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[0]];
         }
-        else
-        {
-            return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr]];
-        }
-    }
-    
-    
-    const getNext3CheckBoxesIds = () => {
-        
-        const date = new Date();
-        const dia = date.toString().slice(0, 3);
-        const regexTime = /\d\d:\d\d/;
-        
-        const hora = getTimeWithoutColon(date.toString().match(regexTime)[0]);
-        const [dia1, dia2, dia3] = getProximos3dias(dia, hora);
-        const [hora1, hora2, hora3] = getProximas3Horas(hora, days.indexOf(dia));
-        return [dia1+hora1, dia2+hora2, dia3+hora3];
-    }
+          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1]];
+      }
+      else
+      {
+          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr]];
+      }
+  }
+  
+  
+  
+  const getNext3CheckBoxesIds = () => {
+      
+      const date = new Date();
+      const dia = date.toString().slice(0, 3);
+      const regexTime = /\d\d:\d\d/;
+      
+      const hora = getTimeWithoutColon(date.toString().match(regexTime)[0]);
+      const [dia1, dia2, dia3] = getProximos3dias(dia, hora);
+      const [hora1, hora2, hora3] = getProximas3Horas(hora, days.indexOf(dia));
+      return [dia1+hora1, dia2+hora2, dia3+hora3];
+  }
 
-    const next3CheckBoxesIds = getNext3CheckBoxesIds();
+  const next3CheckBoxesIds = getNext3CheckBoxesIds();
 
-    setFormData({
-      ...formData,
-      [next3CheckBoxesIds[0]]: true,
-      [next3CheckBoxesIds[1]]: true,
-      [next3CheckBoxesIds[2]]: true
-    });
+  setFormData({
+    ...formData,
+    [next3CheckBoxesIds[0]]: true,
+    [next3CheckBoxesIds[1]]: true,
+    [next3CheckBoxesIds[2]]: true
+  });
 
-    for (let index = 0; index < next3CheckBoxesIds.length; index++) {
-      const _id = next3CheckBoxesIds[index];
-      document.getElementById(_id).checked = true;
-    }
+  for (let index = 0; index < next3CheckBoxesIds.length; index++) {
+    const _id = next3CheckBoxesIds[index];
+    document.getElementById(_id).checked = true;
+  }
 
   }, []);
 
+
   const handleChange = (e) => {
     if (
-      e.target.id === 'Mon0700' ||
-      e.target.id === 'Mon1130' ||
-      e.target.id === 'Mon1300' ||
-      e.target.id === 'Mon1630' ||
-      e.target.id === 'Mon1900' ||
-      e.target.id === 'Mon2100' ||
-      e.target.id === 'Tue0700' ||
-      e.target.id === 'Tue1130' ||
-      e.target.id === 'Tue1300' ||
-      e.target.id === 'Tue1630' ||
-      e.target.id === 'Tue1900' ||
-      e.target.id === 'Tue2100' ||
-      e.target.id === 'Wed0700' ||
-      e.target.id === 'Wed1130' ||
-      e.target.id === 'Wed1300' ||
-      e.target.id === 'Wed1630' ||
-      e.target.id === 'Wed1900' ||
-      e.target.id === 'Wed2100' ||
-      e.target.id === 'Thu0700' ||
-      e.target.id === 'Thu1130' ||
-      e.target.id === 'Thu1300' ||
-      e.target.id === 'Thu1630' ||
-      e.target.id === 'Thu1900' ||
-      e.target.id === 'Thu2100' ||
-      e.target.id === 'Fri0700' ||
-      e.target.id === 'Fri1130' ||
-      e.target.id === 'Fri1300' ||
-      e.target.id === 'Fri1630' ||
-      e.target.id === 'Fri1900' ||
-      e.target.id === 'Fri2100' ||
-      e.target.id === 'Sat0700' ||
-      e.target.id === 'Sat1130' ||
-      e.target.id === 'Sat1300' ||
-      e.target.id === 'Sat1630' ||
-      e.target.id === 'Sat1900' ||
-      e.target.id === 'Sat2100' ||
-      e.target.id === 'Sun0700' ||
-      e.target.id === 'Sun1130' ||
-      e.target.id === 'Sun1300' ||
-      e.target.id === 'Sun1900' ||
-      e.target.id === 'Sun2100'
-    ) {
-      let cantEmisionesSemanales = formData.cantEmisionesSemanales;
-      if(e.target.checked){
-        cantEmisionesSemanales++;
+        e.target.id === 'Mon0700' ||
+        e.target.id === 'Mon1130' ||
+        e.target.id === 'Mon1300' ||
+        e.target.id === 'Mon1630' ||
+        e.target.id === 'Mon1900' ||
+        e.target.id === 'Mon2100' ||
+        e.target.id === 'Tue0700' ||
+        e.target.id === 'Tue1130' ||
+        e.target.id === 'Tue1300' ||
+        e.target.id === 'Tue1630' ||
+        e.target.id === 'Tue1900' ||
+        e.target.id === 'Tue2100' ||
+        e.target.id === 'Wed0700' ||
+        e.target.id === 'Wed1130' ||
+        e.target.id === 'Wed1300' ||
+        e.target.id === 'Wed1630' ||
+        e.target.id === 'Wed1900' ||
+        e.target.id === 'Wed2100' ||
+        e.target.id === 'Thu0700' ||
+        e.target.id === 'Thu1130' ||
+        e.target.id === 'Thu1300' ||
+        e.target.id === 'Thu1630' ||
+        e.target.id === 'Thu1900' ||
+        e.target.id === 'Thu2100' ||
+        e.target.id === 'Fri0700' ||
+        e.target.id === 'Fri1130' ||
+        e.target.id === 'Fri1300' ||
+        e.target.id === 'Fri1630' ||
+        e.target.id === 'Fri1900' ||
+        e.target.id === 'Fri2100' ||
+        e.target.id === 'Sat0700' ||
+        e.target.id === 'Sat1130' ||
+        e.target.id === 'Sat1300' ||
+        e.target.id === 'Sat1630' ||
+        e.target.id === 'Sat1900' ||
+        e.target.id === 'Sat2100' ||
+        e.target.id === 'Sun0700' ||
+        e.target.id === 'Sun1130' ||
+        e.target.id === 'Sun1300' ||
+        e.target.id === 'Sun1900' ||
+        e.target.id === 'Sun2100'
+      ) {
+        console.log('e.target.id: ' + e.target.id);
+        setFormData({
+          ...formData,
+          [e.target.id]: e.target.checked,
+        });
       }
-      else{
-        cantEmisionesSemanales--;
+
+      if (
+        e.target.type === 'text' ||
+        e.target.type === 'textarea'
+      ) {
+        console.log(e.target.id);
+        setFormData({
+          ...formData,
+          [e.target.id]: e.target.value
+        });
       }
 
-      
-      setFormData({
-        ...formData,
-        cantEmisionesSemanales: cantEmisionesSemanales,
-        [e.target.id]: e.target.checked,
-      });
-      console.log(cantEmisionesSemanales);
-    }
-
-    if (
-      e.target.type === 'text' ||
-      e.target.type === 'textarea'
-    ) {
-      setFormData({
-        ...formData,
-        [e.target.id]: e.target.value,
-      });
-    }
-
-    if (
-      e.target.type === 'number'
-    ){
-      setFormData({
-        ...formData,
-        repetitions: +e.target.value,
-      });
-    }
-  };
+      if (
+        e.target.type === 'number'
+      ){
+        setFormData({
+          ...formData,
+          repetitions: +e.target.value,
+        });
+      }
+    };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/listing/create', {
+      const res = await fetch(`/api/listing/update/${params.listingId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -293,32 +301,32 @@ export default function CreatePoblador() {
       setLoading(false);
     }
   };
-
-
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
-        Crear un mensaje al poblador rural
+        Editar un mensaje al poblador rural
       </h1>
-      <form className='flex flex-col  gap-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
           <input
             type='text'
-            placeholder='A quién va dirigido'
+            placeholder='Name'
             className='border p-3 rounded-lg'
             id='recipient'
             maxLength='62'
             minLength='10'
-            onChange={handleChange}
             required
+            onChange={handleChange}
+            value={formData.recipient}
           />
           <textarea
             type='text'
-            placeholder='Mensaje...'
+            placeholder='Escribir aquí el mensaje al poblador rural...'
             className='border p-3 rounded-lg'
             id='message'
-            onChange={handleChange}
             required
+            onChange={handleChange}
+            value={formData.message}
           />
           <div className='flex gap-1'>
             <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje:</span>
@@ -333,6 +341,7 @@ export default function CreatePoblador() {
                     required
                 />
           </div>
+
           <div className='flex gap-6 flex-wrap justify-start'>
             <span className='font-semibold w-20'>Lunes</span>
             <div className='flex gap-6 flex-wrap'>
@@ -520,11 +529,18 @@ export default function CreatePoblador() {
               <span>21:00</span>
             </div>
           </div>
-        </div>
 
-        
-        <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80' disabled={loading} onClick={handleSubmit}>Crear mensaje al poblador rural</button>
-        
+          
+
+
+          <button
+            disabled={loading }
+            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          >
+            {loading ? 'Editando...' : 'Actualizar mensaje al poblador rural'}
+          </button>
+          {error && <p className='text-red-700 text-sm'>{error}</p>}
+        </div>
       </form>
     </main>
   );

@@ -257,7 +257,7 @@ export default function Profile() {
             >
               <Link
                 className='text-slate-700 font-semibold  hover:underline truncate flex-1'
-                to={`/listing/${listing._id}`}
+                to={`/update-poblador/${listing._id}`}
               >
                 <p>{listing.recipient}</p>
               </Link>
@@ -269,7 +269,9 @@ export default function Profile() {
                 >
                   Eliminar
                 </button>
-                <button className='text-green-700 uppercase'>Editar</button>
+                <Link to={`/update-poblador/${listing._id}`}>
+                  <button className='text-green-700 uppercase'>Editar</button>
+                </Link>
               </div>
             </div>
           ))}
