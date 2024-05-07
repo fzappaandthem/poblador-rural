@@ -26,7 +26,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
-fechas-basic.js
 api/pseudocodigo/fechas.js
 getTimeWithoutColon.js
 ultimas-preguntas.md

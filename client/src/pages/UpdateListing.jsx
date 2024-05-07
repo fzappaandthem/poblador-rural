@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getNext3CheckBoxesIds } from '../fechas-basic.js';
 
 export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -77,115 +78,8 @@ export default function UpdateListing() {
     };
 
     fetchListing();
-    const days = [
-        "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-    ]
-    const hours = [
-        "0700", "1130", "1300", "1630", "1900", "2100"
-    ]
-    
-    const getTimeWithoutColon = (time) => {
-        return time.slice(0, 2)+time.slice(3, 5);
-    }
-    
-    const getProximas3Horas = (horaActual, diaActual) => {
-    
-      let proximas3Horas = [];
-      let proximaEdicion = 0;
   
-      while( proximaEdicion < hours.length && hours[proximaEdicion] < horaActual ) {
-          proximaEdicion++;
-      }
-  
-      // son las 13 o menos
-      if(hours.length > proximaEdicion + 2) 
-      {
-          if(diaActual === 0)
-          {
-            if(proximaEdicion === 0){
-              proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+2]];
-            }
-            else if(proximaEdicion === 1) 
-            {
-              proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+3]];
-            }
-            else if(proximaEdicion === 2)
-            {
-              proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+2], hours[proximaEdicion+3]];
-            }
-            else if ( proximaEdicion === 3 )
-            {
-              proximas3Horas = [hours[proximaEdicion+1], hours[proximaEdicion+2], hours[0]];
-            }
-          } 
-          else 
-          {
-            proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[proximaEdicion+2]];
-          }
-      } 
-      //son las 1630
-      else if (hours.length > proximaEdicion + 1) 
-      {
-          proximas3Horas = [hours[proximaEdicion], hours[proximaEdicion+1], hours[0]];
-      } 
-      else if ( hours.length > proximaEdicion)
-      {
-          proximas3Horas = [hours[proximaEdicion], hours[0], hours[1]];
-      }
-      else 
-      {
-          proximas3Horas = [hours[0], hours[1], hours[2]];
-      }
-  
-      return proximas3Horas;
-  
-  }
-  
-  const getProximos3dias = (dayParam, horaActualSinDosPuntos) => {
-      const diaActualIndexInDaysArr = days.indexOf(dayParam);
-      const proximas3Horas = getProximas3Horas(horaActualSinDosPuntos, diaActualIndexInDaysArr);
-  
-      if(proximas3Horas[0] < horaActualSinDosPuntos && horaActualSinDosPuntos > "0700") {
-        if(diaActualIndexInDaysArr === 6) {
-          return [days[0], days[0], days[0]];
-        }
-        return [days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
-      }
-      else if(proximas3Horas[1] < horaActualSinDosPuntos)
-      {
-        if(diaActualIndexInDaysArr === 6) {
-          return [days[diaActualIndexInDaysArr], days[0], days[0]];
-        }
-          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1], days[diaActualIndexInDaysArr+1]];
-      }
-      else if(proximas3Horas[2] < horaActualSinDosPuntos)
-      {
-        if(diaActualIndexInDaysArr === 6) {
-          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[0]];
-        }
-          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr+1]];
-      }
-      else
-      {
-          return [days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr], days[diaActualIndexInDaysArr]];
-      }
-  }
-  
-  
-  
-  const getNext3CheckBoxesIds = () => {
-      
-      const date = new Date();
-      const dia = date.toString().slice(0, 3);
-      const regexTime = /\d\d:\d\d/;
-      
-      const hora = getTimeWithoutColon(date.toString().match(regexTime)[0]);
-      const [dia1, dia2, dia3] = getProximos3dias(dia, hora);
-      const [hora1, hora2, hora3] = getProximas3Horas(hora, days.indexOf(dia));
-      return [dia1+hora1, dia2+hora2, dia3+hora3];
-  }
-
-  const next3CheckBoxesIds = getNext3CheckBoxesIds();
+    const next3CheckBoxesIds = getNext3CheckBoxesIds();
 
   setFormData({
     ...formData,
