@@ -24,25 +24,28 @@ export default function Header() {
           <FaSearch className='text-slate-600' />
         </form> */}
         <ul className='flex gap-4'>
-          <Link to='/create-poblador'>
-            <li className='text-slate-700 hover:underline'>Crear mensaje</li>
-          </Link>
-          <Link to='/'>
+        <Link to='/create-poblador'>
+            {currentUser &&
+              <li className='text-slate-700 hover:underline text-center'>Crear mensaje</li>
+            }
+        </Link>
+        <Link to='/'>
             <li className='hidden sm:inline text-slate-700 hover:underline'>Inicio</li>
           </Link>
           <Link to='/profile'>
             {currentUser ? (
               <img src={currentUser.avatar} alt='foto-de-perfil' className='w-7 h-7 rounded-full object-cover' />
-              ) : 
-              (
-                <li className='text-slate-700 hover:underline'>Iniciar sesión</li>
-              )}
-          </Link>
-          <Link to='/about'>
-                <li className='text-slate-700 hover:underline'>Instrucciones</li>
+            ) : 
+            (
+              <li className='text-slate-700 hover:underline'>Iniciar sesión</li>
+            )}
           </Link>
         </ul>
       </div>
     </header>
   )
 }
+
+{/* <Link to='/about'>
+      <li className='text-slate-700 hover:underline'>Instrucciones</li>
+</Link> */}
