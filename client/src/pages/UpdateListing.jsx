@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getNext3CheckBoxesIds } from '../fechas-basic.js';
+import { getNext3CheckBoxesIds, getFechaUltimaEmision } from '../fechas-basic.js';
 
 export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -57,7 +57,6 @@ export default function UpdateListing() {
     Sun1630: false,
     Sun1900: false,
     Sun2100: false,
-    fechaPrimerEmision: new Date(),
     fechaUltimaEmision: new Date(),
     cantEmisionesSemanales: 0,
   });

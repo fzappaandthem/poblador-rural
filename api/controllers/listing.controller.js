@@ -1,8 +1,6 @@
 import Listing from '../models/listing.model.js';
 import { errorHandler } from '../utils/error.js';
 
-
-
 export const createListing = async (req, res, next) => {
   try {
     const listing = await Listing.create(req.body);
@@ -25,7 +23,30 @@ export const getListing = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};  
+};
+
+export const getEnabledMPRsWhoGotThisEmmission = async(req, res, next) => {
+  //si encuentra un MPR que tiene como fecha de fin menor que la actual, set isEnabled = false
+  try {
+    //______
+
+    const emision = req.query.emision;
+    const sort = req.query.sort || 'createdAt';
+
+    const order = req.query.order || 'desc';
+
+    const listings = await Listing.find({
+      [emision] : true,
+      isEnabled : true
+    }).sort({[sort]: order});
+
+    return res.status(200).json(listings);
+
+
+  } catch (error) {
+    next(error);
+  }
+}
 
 export const updateListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);

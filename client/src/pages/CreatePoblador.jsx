@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getNext3CheckBoxesIds, getPrimerEmisionMPR, getUltimaEmisionMPR } from '../fechas-basic.js';
+import { getNext3CheckBoxesIds, getFechaUltimaEmision } from '../fechas-basic.js';
 
 let emisionesArr = [];
 
@@ -57,11 +57,10 @@ export default function CreatePoblador() {
     Sun1900: false,
     Sun2100: false, 
     fechaUltimaEmision: new Date(),
-    fechaPrimerEmision: new Date(),
     cantEmisionesSemanales: 3,
   });
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   console.log(formData);
 
@@ -69,6 +68,8 @@ export default function CreatePoblador() {
     
     const next3CheckBoxesIds = getNext3CheckBoxesIds();
     emisionesArr = next3CheckBoxesIds;
+    console.log("emisionesArr: ") ;
+    console.log(emisionesArr);
 
     setFormData({
       ...formData,
@@ -131,6 +132,7 @@ export default function CreatePoblador() {
       e.target.id === 'Sun2100'
     ) {
       let cantEmisionesSemanales = formData.cantEmisionesSemanales;
+      setError (currentUser.error) ;
       if(e.target.checked){
         //enviar el e.target.id a fechas-basic junto con el array de emisiones semanales para que me lo agregue
         emisionesArr.push(e.target.id);
@@ -142,7 +144,8 @@ export default function CreatePoblador() {
         cantEmisionesSemanales--;
       }
 
-      console.log('emisionesArr:'+emisionesArr);
+      console.log("emisionesArr: ") ;
+      console.log(emisionesArr);
       
       setFormData({
         ...formData,
@@ -173,11 +176,12 @@ export default function CreatePoblador() {
   };
 
   const handleSubmit = async (e) => {
-    const primerEmision = getPrimerEmisionMPR(emisionesArr);
-    const ultimaEmision = getUltimaEmisionMPR(emisionesArr, repeticiones);
-
-    
-
+    const fecha = new Date ( ) ;
+    //no necesito la primer emisión
+    const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
+    console.log("fechaUltimaEmision: ");
+    console.log(fechaUltimaEmision)
+    formData.fechaUltimaEmision = fechaUltimaEmision ;
 
     e.preventDefault();
     try {
@@ -201,7 +205,6 @@ export default function CreatePoblador() {
       navigate(`/`);
     } catch (error) {
       setError(error.message);
-      setLoading(false);
     }
   };
 
@@ -435,7 +438,7 @@ export default function CreatePoblador() {
 
         
         <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80' disabled={loading} onClick={handleSubmit}>Crear mensaje al poblador rural</button>
-        
+        {error && <p className='text-red-500'>{error}</p>}
       </form>
     </main>
   );

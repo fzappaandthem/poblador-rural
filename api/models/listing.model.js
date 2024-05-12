@@ -210,10 +210,6 @@ const listingSchema = new mongoose.Schema(
         type: Boolean,
         required: true,
     },
-    fechaPrimerEmision: {
-        type: Date,
-        required: true,
-    },
     fechaUltimaEmision: {
         type: Date,
         required: true,
