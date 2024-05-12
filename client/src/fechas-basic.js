@@ -259,7 +259,7 @@ const offsetCompare = ( offset1, offset2 ) => {
 }
 
 const getFechaEmisionMasProximaPosterior = ( fecha, offsetAbsolutoProximaEmision ) => {
-  const offsetAbsolutoDiasNextEmision = offsetAbsolutoProximaEmision.dayOffset != getDddFromDate ( fecha ) ? 1 : 0 ;
+  const offsetAbsolutoDiasNextEmision = offsetAbsolutoProximaEmision.dayOffset != Days.indexOf ( fecha.slice( 0, 3) ) ? 1 : 0 ;
   
   const emisionMasProxima = new Date ( ) ;
   emisionMasProxima.setDate ( fecha.getDate ( ) + offsetAbsolutoDiasNextEmision  ) ;
