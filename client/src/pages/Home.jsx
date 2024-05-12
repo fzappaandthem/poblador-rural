@@ -8,20 +8,12 @@ export default function Home() {
 
   const [listings, setListings] = useState([]);
 
-  const listingsConFechas = listings.map( l => ({...l, fechaUltimaEmision: new Date( l.fechaUltimaEmision ) } ) )
-
-
   const fechaActual = new Date( ) ;
   const hace45 = new Date (  ) ;
 
   hace45.setTime ( fechaActual.getTime() - 45 * 1000 * 60 ) ;
 
   const fechaEmisionProx = getFechaEmisionProximaSistema ( hace45 ) ;
-  console.log("fechaEmisionProx UTC")
-  console.log(fechaEmisionProx.toUTCString())
-  console.log("fechaEmisionProx regional")
-  console.log(fechaEmisionProx)
-  // const filtradas = listings.filter(l => l.fechaUltimaEmision >= fechaEmisionProx.toUTCString());
   console.log("listings.map(l => l.fechaUltimaEmision)")
   console.log(listings.map(l => l.fechaUltimaEmision))
   const emisionDddhhmm = getDddhhmmEmisionProximaSistema( hace45 ) ;
