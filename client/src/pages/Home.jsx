@@ -17,8 +17,10 @@ export default function Home() {
   hace45.setTime ( fechaActual.getTime() - 45 * 1000 * 60 ) ;
 
   const fechaEmisionProx = getFechaEmisionProximaSistema ( hace45 ) ;
-  console.log("fechaEmisionProx")
+  console.log("fechaEmisionProx UTC")
   console.log(fechaEmisionProx.toUTCString())
+  console.log("fechaEmisionProx regional")
+  console.log(fechaEmisionProx)
   // const filtradas = listings.filter(l => l.fechaUltimaEmision >= fechaEmisionProx.toUTCString());
   console.log("listings.map(l => l.fechaUltimaEmision)")
   console.log(listings.map(l => l.fechaUltimaEmision))
