@@ -78,13 +78,26 @@ export default function Home() {
 
                 <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
                   {
-                    listings.filter(l => new Date ( l.fechaUltimaEmision ) >= fechaEmisionProx ).map((listing) => (
+                    listings.filter(l => new Date ( l.fechaUltimaEmision ) >= fechaEmisionProx - 3 * 60 * 60 * 1000 ).map((listing) => (
                       <ListingItem key={listing._id} listing={listing} />
                     ))
                   }
                 </div>
               </div>
             )}
+        {listings && listings.length > 0 && (
+              <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+
+                <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+                  {
+                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx - 3 * 60 * 60 * 1000 ).map((listing) => (
+                      console.log(`fecha ultima emisión\n ${listing.fechaUltimaEmision} >= ${fechaEmisionProx} : \n ${listing}`)
+                    ))
+                  }
+                </div>
+              </div>
+            )}
+
 
         {/* listings.map((listing) => (
                       <div className="w-1/3" >{listing.recipient}</div>
