@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getNext3CheckBoxesIds, getFechaUltimaEmision } from '../fechas-basic.js';
 
+let emisionesArr = [];
+
 export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -146,6 +148,17 @@ export default function UpdateListing() {
         });
       }
 
+      if(e.target.checked){
+        //enviar el e.target.id a fechas-basic junto con el array de emisiones semanales para que me lo agregue
+        emisionesArr.push(e.target.id);
+        cantEmisionesSemanales++;
+      }
+      else{
+        //enviar el e.target.id a fechas-basic junto con el array de emisiones semanales para que me lo elimine
+        emisionesArr = emisionesArr.filter(element => element !== e.target.id);
+        cantEmisionesSemanales--;
+      }
+
       if (
         e.target.type === 'text' ||
         e.target.type === 'textarea'
@@ -168,10 +181,11 @@ export default function UpdateListing() {
     };
   
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
-    formData.fechaUltimaEmision = fechaUltimaEmision ;
+    const handleSubmit = async (e) => {
+      const fecha = new Date ( ) ;
+      const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
+      formData.fechaUltimaEmision = fechaUltimaEmision ;
+      e.preventDefault();
     try {
       setLoading(true);
       setError(false);
