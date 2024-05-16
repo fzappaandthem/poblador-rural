@@ -78,7 +78,8 @@ export default function Home() {
 
                 <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
                   {
-                    listings.filter(l => new Date ( l.fechaUltimaEmision ) >= fechaEmisionProx - 3 * 60 * 60 * 1000 ).map((listing) => (
+                    listings.filter(l => new Date ( l.fechaUltimaEmision ) >= fechaEmisionProx - 1 * 60 * 1000 )
+                    .filter(l => new Date (l.createdAt) <= fechaEmisionProx - 15 * 60 * 1000 ).map((listing) => (
                       <ListingItem key={listing._id} listing={listing} />
                     ))
                   }
