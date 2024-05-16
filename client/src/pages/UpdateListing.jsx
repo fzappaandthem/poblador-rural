@@ -170,6 +170,8 @@ export default function UpdateListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
+    formData.fechaUltimaEmision = fechaUltimaEmision ;
     try {
       setLoading(true);
       setError(false);
