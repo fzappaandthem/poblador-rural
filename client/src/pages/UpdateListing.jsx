@@ -182,6 +182,7 @@ export default function UpdateListing() {
   
 
     const handleSubmit = async (e) => {
+      let cantEmisionesSemanales = formData.cantEmisionesSemanales;
       const fecha = new Date ( ) ;
       const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
       console.log("fechaUltimaEmision UPDATE LISTING: ");
