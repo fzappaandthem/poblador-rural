@@ -70,17 +70,61 @@ export default function UpdateListing() {
       const listingId = params.listingId;
       const res = await fetch(`/api/listing/get/${listingId}`);
       const data = await res.json();
-
+      
       if (data.success === false) {
         console.log(data.message);
         return;
       }
       setFormData(data);
     };
-
+    
     fetchListing();
+    formData.cantEmisionesSemanales = 3;
   
     const next3CheckBoxesIds = getNext3CheckBoxesIds();
+
+    formData.Mon0700 = false ;
+    formData.Mon1130 = false ;
+    formData.Mon1300 = false ;
+    formData.Mon1630 = false ;
+    formData.Mon1900 = false ;
+    formData.Mon2100 = false ;
+    formData.Tue0700 = false ;
+    formData.Tue1130 = false ;
+    formData.Tue1300 = false ;
+    formData.Tue1630 = false ;
+    formData.Tue1900 = false ;
+    formData.Tue2100 = false ;
+    formData.Wed0700 = false ;
+    formData.Wed1130 = false ;
+    formData.Wed1300 = false ;
+    formData.Wed1630 = false ;
+    formData.Wed1900 = false ;
+    formData.Wed2100 = false ;
+    formData.Thu0700 = false ;
+    formData.Thu1130 = false ;
+    formData.Thu1300 = false ;
+    formData.Thu1630 = false ;
+    formData.Thu1900 = false ;
+    formData.Thu2100 = false ;
+    formData.Fri0700 = false ;
+    formData.Fri1130 = false ;
+    formData.Fri1300 = false ;
+    formData.Fri1630 = false ;
+    formData.Fri1900 = false ;
+    formData.Fri2100 = false ;
+    formData.Sat0700 = false ;
+    formData.Sat1130 = false ;
+    formData.Sat1300 = false ;
+    formData.Sat1630 = false ;
+    formData.Sat1900 = false ;
+    formData.Sat2100 = false ;
+    formData.Sun0700 = false ;
+    formData.Sun1130 = false ;
+    formData.Sun1300 = false ;
+    formData.Sun1630 = false ;
+    formData.Sun1900 = false ;
+    formData.Sun2100 = false ;
 
   setFormData({
     ...formData,
