@@ -90,7 +90,7 @@ export default function Home() {
 
                 <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
                   {
-                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx - 1 * 60 * 1000 ).map((listing) => (
+                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx + 15 * 60 * 1000 ).map((listing) => (
                       console.log(`fecha ultima emisión\n ${listing.fechaUltimaEmision} >= ${fechaEmisionProx} : \n ${listing}\n ${listing.createdAt}\n`)
                     ))
                   }
