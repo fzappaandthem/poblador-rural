@@ -79,10 +79,10 @@ export default function UpdateListing() {
     };
     
     fetchListing();
-    formData.cantEmisionesSemanales = 3;
-  
+    
     const next3CheckBoxesIds = getNext3CheckBoxesIds();
-
+    emisionesArr = next3CheckBoxesIds;
+    
     formData.Mon0700 = false ;
     formData.Mon1130 = false ;
     formData.Mon1300 = false ;
@@ -125,18 +125,19 @@ export default function UpdateListing() {
     formData.Sun1630 = false ;
     formData.Sun1900 = false ;
     formData.Sun2100 = false ;
-
-  setFormData({
-    ...formData,
-    [next3CheckBoxesIds[0]]: true,
-    [next3CheckBoxesIds[1]]: true,
-    [next3CheckBoxesIds[2]]: true
-  });
-
-  for (let index = 0; index < next3CheckBoxesIds.length; index++) {
-    const _id = next3CheckBoxesIds[index];
-    document.getElementById(_id).checked = true;
-  }
+    
+    setFormData({
+      ...formData,
+      [next3CheckBoxesIds[0]]: true,
+      [next3CheckBoxesIds[1]]: true,
+      [next3CheckBoxesIds[2]]: true
+    });
+    
+    for (let index = 0; index < next3CheckBoxesIds.length; index++) {
+      const _id = next3CheckBoxesIds[index];
+      document.getElementById(_id).checked = true;
+    }
+    formData.cantEmisionesSemanales = 3;
 
   }, []);
 
