@@ -147,6 +147,7 @@ export default function UpdateListing() {
           [e.target.id]: e.target.checked,
         });
       }
+      let cantEmisionesSemanales = formData.cantEmisionesSemanales;
 
       if(e.target.checked){
         //enviar el e.target.id a fechas-basic junto con el array de emisiones semanales para que me lo agregue
@@ -182,7 +183,6 @@ export default function UpdateListing() {
   
 
     const handleSubmit = async (e) => {
-      let cantEmisionesSemanales = formData.cantEmisionesSemanales;
       const fecha = new Date ( ) ;
       const fechaUltimaEmision = getFechaUltimaEmision( fecha, emisionesArr, formData.repetitions ) ;
       console.log("fechaUltimaEmision UPDATE LISTING: ");
