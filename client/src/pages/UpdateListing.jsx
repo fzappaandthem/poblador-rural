@@ -222,7 +222,7 @@ export default function UpdateListing() {
         });
       }
 
-      if(e.target.id === 'p2p' || e.target.id === 'misa'){
+      if(e.target.id === 'p2p' || e.target.id === 'misas'){
         setFormData({...formData, category: e.target.id});
       }
 
@@ -315,7 +315,7 @@ export default function UpdateListing() {
               <span>Persona a persona</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="misa" onChange={handleChange} checked={formData.category === 'misa'} className='w-5'/>
+              <input type="checkbox" id="misas" onChange={handleChange} checked={formData.category === 'misas'} className='w-5'/>
               <span>Misa</span>
             </div>
           </div>

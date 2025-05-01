@@ -166,7 +166,7 @@ export default function CreatePoblador() {
       });
     }
 
-    if(e.target.id === 'p2p' || e.target.id === 'misa'){
+    if(e.target.id === 'p2p' || e.target.id === 'misas'){
       setFormData({...formData, category: e.target.id});
     }
 
@@ -240,7 +240,7 @@ export default function CreatePoblador() {
             required
           />
           <div className='flex gap-1'>
-            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje OIGA:</span>
+            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje OIGAME:</span>
                 <input
                     className=' gap-1 p-2 w-16 border border-gray-300 rounded-lg'
                     type='number'
@@ -259,7 +259,7 @@ export default function CreatePoblador() {
               <span>Persona a persona</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="misa" onChange={handleChange} checked={formData.category === 'misa'} className='w-5'/>
+              <input type="checkbox" id="misas" onChange={handleChange} checked={formData.category === 'misas'} className='w-5'/>
               <span>Misa</span>
             </div>
           </div>
