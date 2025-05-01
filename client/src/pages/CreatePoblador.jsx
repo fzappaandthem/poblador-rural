@@ -13,6 +13,7 @@ export default function CreatePoblador() {
     message: '',
     userRef: currentUser._id,
     repetitions: 3,
+    category: 'p2p',
     isEnabled: true,
     Mon0700: false,
     Mon1130: false,
@@ -165,6 +166,10 @@ export default function CreatePoblador() {
       });
     }
 
+    if(e.target.category === 'p2p' || e.target.category === 'misa'){
+      setFormData({...formData, type: e.target.id});
+    }
+
     if (
       e.target.type === 'number'
     ){
@@ -247,6 +252,18 @@ export default function CreatePoblador() {
                     required
                 />
           </div>
+
+          <div className="flex gap-6 flex-wrap">
+            <div className="flex gap-2">
+              <input type="checkbox" id="p2p" onChange={handleChange} checked={formData.category === 'p2p'} className='w-5'/>
+              <span>Persona a persona</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="misa" onChange={handleChange} checked={formData.category === 'misa'} className='w-5'/>
+              <span>Misa</span>
+            </div>
+          </div>
+
           <div className='flex gap-6 flex-wrap justify-start'>
             <span className='font-semibold w-20'>Lunes</span>
             <div className='flex gap-6 flex-wrap'>

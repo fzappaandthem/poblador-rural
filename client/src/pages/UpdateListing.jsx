@@ -16,6 +16,7 @@ export default function UpdateListing() {
     message: '',
     userRef: currentUser._id,
     repetitions: 3,
+    category: 'p2p',
     isEnabled: true,
     Mon0700: false,
     Mon1130: false,
@@ -82,7 +83,8 @@ export default function UpdateListing() {
     
     const next3CheckBoxesIds = getNext3CheckBoxesIds();
     emisionesArr = next3CheckBoxesIds;
-    
+
+    formData.category = 'p2p';
     formData.Mon0700 = false ;
     formData.Mon1130 = false ;
     formData.Mon1300 = false ;
@@ -194,6 +196,15 @@ export default function UpdateListing() {
       }
       let cantEmisionesSemanales = formData.cantEmisionesSemanales;
 
+      setFormData({
+        ...formData,
+        [e.target.category]: 'p2p',
+      });
+
+      // if(e.target.category.checked){
+      //   formData.category = 3;
+      // }
+
       if(e.target.checked){
         //enviar el e.target.id a fechas-basic junto con el array de emisiones semanales para que me lo agregue
         emisionesArr.push(e.target.id);
@@ -214,6 +225,10 @@ export default function UpdateListing() {
           ...formData,
           [e.target.id]: e.target.value
         });
+      }
+
+      if(e.target.category === 'p2p' || e.target.category === 'misa'){
+        setFormData({...formData, type: e.target.id});
       }
 
       if (
@@ -297,6 +312,17 @@ export default function UpdateListing() {
                     onChange={handleChange}
                     required
                 />
+          </div>
+
+          <div className="flex gap-6 flex-wrap">
+            <div className="flex gap-2">
+              <input type="checkbox" id="p2p" onChange={handleChange} checked={formData.category === 'p2p'} className='w-5'/>
+              <span>Persona a persona</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="misa" onChange={handleChange} checked={formData.category === 'misa'} className='w-5'/>
+              <span>Misa</span>
+            </div>
           </div>
 
           <div className='flex gap-6 flex-wrap justify-start'>
