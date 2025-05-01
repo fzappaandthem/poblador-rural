@@ -9,7 +9,7 @@ export default function Home() {
   const [listings, setListings] = useState([]);
 
   const fechaActual = new Date( ) ;
-  const hace45 = new Date (  ) ;
+  const hace45 = new Date ( ) ;
 
   hace45.setTime ( fechaActual.getTime() - 45 * 1000 * 60 ) ;
 
@@ -23,7 +23,6 @@ export default function Home() {
   const mes = getMonthFromDate ( fechaEmisionProx ) ;
   const diaSemana = getDayFromDddhhmm ( emisionDddhhmm ) ;
   const diaMes = hace45.getDate() ;
-  // const [listings, setListings] = useState([]);
   
   
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function Home() {
         return;
       }
       setListings(data);
-      // setLoading(false);
       
     }
   
@@ -49,11 +47,11 @@ export default function Home() {
   }, [] ) ;
 
 
-  //filter((item) => item.fechaUltimaEmision >= fechaEmisionProx)
-
   return (
     <div>
-      {/* Top page  
+      {/* 
+      LABUREMOS ESTO PARA UNA PROXIMA ETAPA DE TESTEO CON TODO FUNCIONANDO INCLUIDO LOS MENSAJES SECCIONADOS
+      Top page  
       <div className="text-slate-900 text-xs sm:text-xl font-semibold ">
           A quien va dirigido
         </div>

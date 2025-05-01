@@ -10,6 +10,12 @@ const listingSchema = new mongoose.Schema(
         type: String,
         required: true,
     },
+    category: {
+        type: String,
+        enum: ['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'reminders', 'misas', 'fallecimientos'],
+        default: 'p2p',
+        required: true,
+    },
     userRef: {
         type: String,
         required: true,
