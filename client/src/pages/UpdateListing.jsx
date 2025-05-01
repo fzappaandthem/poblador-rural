@@ -223,7 +223,7 @@ export default function UpdateListing() {
       }
 
       if(e.target.id === 'p2p' || e.target.id === 'misa'){
-        setFormData({...formData, type: e.target.id});
+        setFormData({...formData, category: e.target.id});
       }
 
       if (

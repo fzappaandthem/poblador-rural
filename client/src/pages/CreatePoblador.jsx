@@ -167,7 +167,7 @@ export default function CreatePoblador() {
     }
 
     if(e.target.id === 'p2p' || e.target.id === 'misa'){
-      setFormData({...formData, type: e.target.id});
+      setFormData({...formData, category: e.target.id});
     }
 
     if (
@@ -240,7 +240,7 @@ export default function CreatePoblador() {
             required
           />
           <div className='flex gap-1'>
-            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje:</span>
+            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje OIGA:</span>
                 <input
                     className=' gap-1 p-2 w-16 border border-gray-300 rounded-lg'
                     type='number'
