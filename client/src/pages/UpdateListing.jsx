@@ -196,11 +196,6 @@ export default function UpdateListing() {
       }
       let cantEmisionesSemanales = formData.cantEmisionesSemanales;
 
-      setFormData({
-        ...formData,
-        [e.target.category]: 'p2p',
-      });
-
       // if(e.target.category.checked){
       //   formData.category = 3;
       // }
@@ -227,7 +222,7 @@ export default function UpdateListing() {
         });
       }
 
-      if(e.target.category === 'p2p' || e.target.category === 'misa'){
+      if(e.target.id === 'p2p' || e.target.id === 'misa'){
         setFormData({...formData, type: e.target.id});
       }
 
