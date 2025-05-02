@@ -71,13 +71,14 @@ export default function Home() {
         </h1>
         
 
-        {listings && listings.length > 0 && listings.category === 'misas' && (
+        {listings && listings.length > 0 &&  (
           
               <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
               <p>Misas</p>
                 <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
                   {
-                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                    
+                    listings.filter(l => l.category === 'misas' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
                       <ListingItem key={listing._id} listing={listing} />
                     ))
                   }
@@ -85,19 +86,21 @@ export default function Home() {
               </div>
             )}
 
-        {listings && listings.length > 0 && listings.category === 'p2p' && (
-              <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-                <p>Persona a persona</p>
-                <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-                  {
-                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
-                      <ListingItem key={listing._id} listing={listing} />
-                    ))
-                  }
-                </div>
-              </div>
-            )}
-        
+        {listings && listings.length > 0 &&  (
+          
+          <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <p>Persona a persona</p>
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+              {
+                
+                listings.filter(l => l.category === 'p2p' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                  <ListingItem key={listing._id} listing={listing} />
+                ))
+              }
+            </div>
+          </div>
+        )}
+
         {listings && listings.length > 0 && (
               <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
 
