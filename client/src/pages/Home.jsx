@@ -71,7 +71,7 @@ export default function Home() {
         </h1>
         
 
-        {listings && listings.length > 0 && (
+        {listings && listings.length > 0 && listings.category === 'misas' && (
               <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
 
                 <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
@@ -83,6 +83,20 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+        {listings && listings.length > 0 && listings.category === 'p2p' && (
+              <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+
+                <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+                  {
+                    listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                      <ListingItem key={listing._id} listing={listing} />
+                    ))
+                  }
+                </div>
+              </div>
+            )}
+        
         {listings && listings.length > 0 && (
               <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
 
