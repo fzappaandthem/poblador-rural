@@ -6,7 +6,7 @@ export default function ListingItem({listing}) {
   return (
     <div className={`shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] md:w-[660px] ${
         listing.category === 'misas'
-          ? 'bg-orange-20'
+          ? 'bg-orange-100'
           : 'bg-white' // default
       }`}>
         <Link to={`/update-poblador/${listing._id}`}>
