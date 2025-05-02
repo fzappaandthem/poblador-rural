@@ -4,8 +4,11 @@ import { FcCollaboration } from "react-icons/fc";
 
 export default function ListingItem({listing}) {
   return (
-    <div className='bg-white shadow-md 
-    hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] md:w-[660px]'>
+    <div className={`shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] md:w-[660px] ${
+        listing.category === 'misas'
+          ? 'bg-orange-20'
+          : 'bg-white' // default
+      }`}>
         <Link to={`/update-poblador/${listing._id}`}>
             <FcCollaboration className='mt-2 ml-2 h-4 w-4 text-green-700'/>
             <div className="p-3 flex flex-col gap-2 w-full">
