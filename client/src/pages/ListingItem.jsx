@@ -4,7 +4,7 @@ import { FcCollaboration } from "react-icons/fc";
 
 export default function ListingItem({listing}) {
   return (
-    <div className='bg-white shadow-md 
+    <div className='bg-orange-100 shadow-md 
     hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] md:w-[660px]'>
         <Link to={`/update-poblador/${listing._id}`}>
             <FcCollaboration className='mt-2 ml-2 h-4 w-4 text-green-700'/>
