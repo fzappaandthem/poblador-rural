@@ -49,7 +49,7 @@ Categoría 10 (FALLECIMIENTOS)
       'thanks': 'bg-pink-100',
       'reminders': 'bg-orange-100',
       'misas': 'bg-purple-100',
-      'fallecimientos': 'bg-grey-100',
+      'fallecimientos': 'bg-indigo-100',
     };
     const bgClass = categoryClasses[listing.category] || 'bg-white'; // fallback
     return (
