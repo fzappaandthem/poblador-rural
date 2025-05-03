@@ -83,50 +83,6 @@ export default function UpdateListing() {
     
     const next3CheckBoxesIds = getNext3CheckBoxesIds();
     emisionesArr = next3CheckBoxesIds;
-
-    // formData.category = 'p2p';
-    // formData.Mon0700 = false ;
-    // formData.Mon1130 = false ;
-    // formData.Mon1300 = false ;
-    // formData.Mon1630 = false ;
-    // formData.Mon1900 = false ;
-    // formData.Mon2100 = false ;
-    // formData.Tue0700 = false ;
-    // formData.Tue1130 = false ;
-    // formData.Tue1300 = false ;
-    // formData.Tue1630 = false ;
-    // formData.Tue1900 = false ;
-    // formData.Tue2100 = false ;
-    // formData.Wed0700 = false ;
-    // formData.Wed1130 = false ;
-    // formData.Wed1300 = false ;
-    // formData.Wed1630 = false ;
-    // formData.Wed1900 = false ;
-    // formData.Wed2100 = false ;
-    // formData.Thu0700 = false ;
-    // formData.Thu1130 = false ;
-    // formData.Thu1300 = false ;
-    // formData.Thu1630 = false ;
-    // formData.Thu1900 = false ;
-    // formData.Thu2100 = false ;
-    // formData.Fri0700 = false ;
-    // formData.Fri1130 = false ;
-    // formData.Fri1300 = false ;
-    // formData.Fri1630 = false ;
-    // formData.Fri1900 = false ;
-    // formData.Fri2100 = false ;
-    // formData.Sat0700 = false ;
-    // formData.Sat1130 = false ;
-    // formData.Sat1300 = false ;
-    // formData.Sat1630 = false ;
-    // formData.Sat1900 = false ;
-    // formData.Sat2100 = false ;
-    // formData.Sun0700 = false ;
-    // formData.Sun1130 = false ;
-    // formData.Sun1300 = false ;
-    // formData.Sun1630 = false ;
-    // formData.Sun1900 = false ;
-    // formData.Sun2100 = false ;
     
     setFormData({
       ...formData,
@@ -309,16 +265,6 @@ export default function UpdateListing() {
                 />
           </div>
 
-          <div className="flex gap-6 flex-wrap">
-            <div className="flex gap-2">
-              <input type="checkbox" id="p2p" onChange={handleChange} checked={formData.category === 'p2p'} className='w-5'/>
-              <span>Persona a persona</span>
-            </div>
-            <div className="flex gap-2">
-              <input type="checkbox" id="misas" onChange={handleChange} checked={formData.category === 'misas'} className='w-5'/>
-              <span>Misa</span>
-            </div>
-          </div>
 
           <div className='flex gap-6 flex-wrap justify-start'>
             <span className='font-semibold w-20'>Lunes</span>
