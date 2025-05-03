@@ -39,7 +39,7 @@ const categoryClasses = {
     cortes: 'bg-yellow-100',
     pedidosSangre: 'bg-red-100',
     lostFound: 'bg-blue-100',
-    p2p: 'bg-beige-100',
+    p2p: 'bg-white',
     institucionales: 'bg-sky-100',
     eventos: 'bg-green-100',
     thanks: 'bg-pink-100',
