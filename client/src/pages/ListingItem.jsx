@@ -17,14 +17,6 @@ export default function ListingItem({listing}) {
                     <p className='text-sm text-gray-600 w-full'>{listing.cantRepeticiones}</p>
                 </div>
                 <p className='text-md text-gray-600 '>{listing.message}</p>
-                <div className="text-slate-700 flex gap-4">
-                    <div className="font-bold text-xs">
-                        {/*listing.bedrooms} {listing.bedrooms > 1 ? 'habitaciones' : 'habitación'*/}
-                    </div>
-                    <div className="font-bold text-xs">
-                        {/*listing.bathrooms} {listing.bathrooms > 1 ? 'baños' : 'baño'*/}
-                    </div>
-                </div>
             </div>
         </Link>
         <br></br>
