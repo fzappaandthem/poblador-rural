@@ -240,7 +240,7 @@ export default function CreatePoblador() {
             required
           />
           <div className='flex gap-1'>
-            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje OIGAME:</span>
+            <span className='font-semibold my-auto' >Cuántas veces se repetirá el mensaje?</span>
                 <input
                     className=' gap-1 p-2 w-16 border border-gray-300 rounded-lg'
                     type='number'
@@ -252,15 +252,46 @@ export default function CreatePoblador() {
                     required
                 />
           </div>
-
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
               <input type="checkbox" id="p2p" onChange={handleChange} checked={formData.category === 'p2p'} className='w-5'/>
               <span>Persona a persona</span>
             </div>
             <div className="flex gap-2">
+	            <input type="checkbox" id="pedidosSangre" onChange={handleChange} checked={formData.category === 'pedidosSangre'} className='w-5'/>
+	            <span>pedido de sangre</span>
+            </div>
+            <div className="flex gap-2">
+	            <input type="checkbox" id="lostFound" onChange={handleChange} checked={formData.category === 'lostFound'} className='w-5'/>
+	            <span>Objetos perdidos</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="institucionales" onChange={handleChange} checked={formData.category === 'institucionales'} className='w-5'/>
+              <span>Institucionales</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="eventos" onChange={handleChange} checked={formData.category === 'eventos'} className='w-5'/>
+              <span>Eventos</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="thanks" onChange={handleChange} checked={formData.category === 'thanks'} className='w-5'/>
+              <span>Agradecimientos</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="reminders" onChange={handleChange} checked={formData.category === 'reminders'} className='w-5'/>
+              <span>Recordatorios</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="fallecimientos" onChange={handleChange} checked={formData.category === 'fallecimientos'} className='w-5'/>
+              <span>Fallecimientos</span>
+            </div>
+            <div className="flex gap-2">
               <input type="checkbox" id="misas" onChange={handleChange} checked={formData.category === 'misas'} className='w-5'/>
               <span>Misa</span>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="cortes" onChange={handleChange} checked={formData.category === 'cortes'} className='w-5'/>
+              <span>Cortes</span>
             </div>
           </div>
 
