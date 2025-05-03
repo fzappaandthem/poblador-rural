@@ -113,8 +113,8 @@ export default function Home() {
 
         {listings && listings.length > 0 && listings.some(listing => listing.category === "p2p") && (
 
-        <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+        <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <p>Persona a persona</p>
             </div>
             {
@@ -167,8 +167,8 @@ export default function Home() {
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "reminders") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-          <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+        <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+        <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <h3>Recordatorios</h3>
           </div>
             {
