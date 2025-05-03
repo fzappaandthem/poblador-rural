@@ -40,16 +40,16 @@ Categoría 10 (FALLECIMIENTOS)
   
   export default function ListingItem({listing}) {
     const categoryClasses = {
-      cortes: 'bg-yellow-100',
-      pedidosSangre: 'bg-red-100',
-      lostFound: 'bg-blue-100',
-      p2p: 'bg-white',
-      institucionales: 'bg-sky-100',
-      eventos: 'bg-green-100',
-      thanks: 'bg-pink-100',
-      reminders: 'bg-orange-100',
-      misas: 'bg-purple-100',
-      deaths: 'bg-grey-100',
+      'cortes': 'bg-yellow-100',
+      'pedidosSangre': 'bg-red-100',
+      'lostFound': 'bg-blue-100',
+      'p2p': 'bg-white',
+      'institucionales': 'bg-sky-100',
+      'eventos': 'bg-green-100',
+      'thanks': 'bg-pink-100',
+      'reminders': 'bg-orange-100',
+      'misas': 'bg-purple-100',
+      'deaths': 'bg-grey-100',
     };
     const bgClass = categoryClasses[listing.category] || 'bg-white'; // fallback
     return (
