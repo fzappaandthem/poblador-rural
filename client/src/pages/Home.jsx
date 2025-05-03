@@ -72,8 +72,8 @@ export default function Home() {
 
         {/*['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'reminders', 'misas', 'fallecimientos']*/}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "cortes") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <h3>Cortes</h3>
           </div>
             {
@@ -85,8 +85,8 @@ export default function Home() {
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "pedidosSangre") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <h3>pedidos de sangre</h3>
           </div>
             {
@@ -98,8 +98,8 @@ export default function Home() {
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "lostFound") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <h3>Objetos perdidos</h3>
           </div>
             {
@@ -113,8 +113,8 @@ export default function Home() {
 
         {listings && listings.length > 0 && listings.some(listing => listing.category === "p2p") && (
 
-            <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-        <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+        <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
             <p>Persona a persona</p>
             </div>
             {
@@ -127,50 +127,50 @@ export default function Home() {
         )}
 
         {listings && listings.length > 0 && listings.some(listing => listing.category === "institucionales") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-            <h3>Institucionales</h3>
-          </div>
-            {
-              
-              listings.filter(l => l.category === 'institucionales' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
-                <ListingItem key={listing._id} listing={listing} />
-              ))
-            }
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+              <h3>Institucionales</h3>
+            </div>
+              {
+                
+                listings.filter(l => l.category === 'institucionales' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                  <ListingItem key={listing._id} listing={listing} />
+                ))
+              }
           </div>
         )}
                 {/*['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'reminders', 'misas', 'fallecimientos']*/}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "eventos") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-            <h3>Eventos</h3>
-          </div>
-            {
-              
-              listings.filter(l => l.category === 'eventos' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
-                <ListingItem key={listing._id} listing={listing} />
-              ))
-            }
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+              <h3>Eventos</h3>
+            </div>
+              {
+                
+                listings.filter(l => l.category === 'eventos' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                  <ListingItem key={listing._id} listing={listing} />
+                ))
+              }
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "thanks") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-            <h3>Agradecimientos</h3>
-          </div>
-            {
-              
-              listings.filter(l => l.category === 'thanks' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
-                <ListingItem key={listing._id} listing={listing} />
-              ))
-            }
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+              <h3>Agradecimientos</h3>
+            </div>
+              {
+                
+                listings.filter(l => l.category === 'thanks' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                  <ListingItem key={listing._id} listing={listing} />
+                ))
+              }
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "reminders") && (
-        <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-        <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-            <h3>Recordatorios</h3>
-          </div>
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+            <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+              <h3>Recordatorios</h3>
+            </div>
             {
               
               listings.filter(l => l.category === 'reminders' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
@@ -181,8 +181,8 @@ export default function Home() {
         )}
 
         {listings && listings.length > 0 && listings.some(listing => listing.category === "misas") && (
+         <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
           <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-          <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
             <h3>Misas</h3>
           </div>
             {
@@ -194,28 +194,28 @@ export default function Home() {
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "fallecimientos") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-            <h3>Fallecimientos</h3>
-          </div>
-            {
-              
-              listings.filter(l => l.category === 'fallecimientos' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
-                <ListingItem key={listing._id} listing={listing} />
-              ))
-            }
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
+              <h3>Fallecimientos</h3>
+            </div>
+              {
+                
+                listings.filter(l => l.category === 'fallecimientos' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
+                  <ListingItem key={listing._id} listing={listing} />
+                ))
+              }
           </div>
         )}
 
         {listings && listings.length > 0 && (
+          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
-            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
               {
                 listings.filter(l => new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
                   console.log(`fecha ultima emisión\n ${listing.fechaUltimaEmision} >= ${fechaEmisionProx} : \n ${listing}\n ${listing.createdAt}\n`)
                 ))
               }
-            </div>
+          </div>
           </div>
         )}
 
