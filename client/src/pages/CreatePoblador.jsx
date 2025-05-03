@@ -165,8 +165,19 @@ export default function CreatePoblador() {
         [e.target.id]: e.target.value,
       });
     }
-
-    if(e.target.id === 'p2p' || e.target.id === 'misas'){
+    //['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'reminders', 'misas', 'fallecimientos']
+    if(e.target.id === 'p2p' 
+      || e.target.id === 'misas'
+      || e.target.id === 'pedidosSangre'
+      || e.target.id === 'cortes'
+      || e.target.id === 'institucionales'
+      || e.target.id === 'eventos'
+      || e.target.id === 'thanks'
+      || e.target.id === 'reminders'
+      || e.target.id === 'fallecimientos'
+      || e.target.id === 'lostFound'
+      )
+    {
       setFormData({...formData, category: e.target.id});
     }
 
