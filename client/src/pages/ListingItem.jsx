@@ -48,10 +48,10 @@ const categoryClasses = {
     deaths: 'bg-grey-100',
   };
 
-const bgClass = categoryClasses[listing.category] || 'bg-white'; // fallback
-
-export default function ListingItem({listing}) {
-  return (
+  
+  export default function ListingItem({listing}) {
+    const bgClass = categoryClasses[listing.category] || 'bg-white'; // fallback
+    return (
     <div className={`shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-[330px] md:w-[660px] min-h-[80px] 
     ${bgClass}`}>
         <Link to={`/update-poblador/${listing._id}`}>
