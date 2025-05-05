@@ -94,7 +94,7 @@ export default function Home() {
           </div>
         )}
 
-        {listings && listings.length > 0 && listings.some(listing => listing.category === "p2p") && (
+        {listings && listings.length > 0 && listings.some(listing => listing.category === "p2p" && listing.isEnabled === true) && (
 
         <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
           <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
