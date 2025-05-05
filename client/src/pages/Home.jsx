@@ -48,23 +48,6 @@ export default function Home() {
 
 
   return (
-    <div>
-      {/* 
-      LABUREMOS ESTO PARA UNA PROXIMA ETAPA DE TESTEO CON TODO FUNCIONANDO INCLUIDO LOS MENSAJES SECCIONADOS
-      Top page  
-      <div className="text-slate-900 text-xs sm:text-xl font-semibold ">
-          A quien va dirigido
-        </div>
-        <div className="text-slate-900 text-xs sm:text-lg">
-          Aca va el detalle de cada uno de los mensajes al poblador rural
-          Emision: { emisionDddhhmm }
-        </div>
-        
-        
-                        <div className="my-3">
-                  Mensajes
-              </div>
-        */}
       <div className="flex flex-col gap-6 p-28 px-3">
         <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
           Mensajes al poblador rural del día <span className="text-slate-500"> { diaSemana } { diaMes } de { mes }  </span> { hora } horas
@@ -115,10 +98,9 @@ export default function Home() {
 
         <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
           <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-            <p>Persona a persona</p>
+            <h3>Persona a persona</h3>
             </div>
             {
-              
               listings.filter(l => l.category === 'p2p' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
                     <ListingItem key={listing._id} listing={listing} />
               ))
@@ -132,7 +114,6 @@ export default function Home() {
               <h3>Institucionales</h3>
             </div>
               {
-                
                 listings.filter(l => l.category === 'institucionales' && new Date (l.fechaUltimaEmision) >= fechaEmisionProx.getTime() - 1 * 60 * 1000 && new Date (l.createdAt) <= fechaEmisionProx.getTime() + 15 * 60 * 1000 ).map((listing) => (
                   <ListingItem key={listing._id} listing={listing} />
                 ))
@@ -225,6 +206,5 @@ export default function Home() {
                       <div className="w-1/3" >{listing.recipient}</div>
                     )) */}
       </div>
-    </div>
   )
 }
