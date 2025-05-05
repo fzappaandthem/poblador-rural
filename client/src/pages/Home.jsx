@@ -53,7 +53,7 @@ export default function Home() {
           Mensajes al poblador rural del día <span className="text-slate-500"> { diaSemana } { diaMes } de { mes }  </span> { hora } horas
         </h1>
 
-        {/*['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'reminders', 'misas', 'fallecimientos']*/}
+        {/*['cortes', 'pedidosSangre', 'lostFound', 'p2p', 'institucionales', 'eventos', 'thanks', 'fechaUltimaEmisionnders', 'misas', 'fallecimientos']*/}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "cortes") && (
           <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
           <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
@@ -148,8 +148,8 @@ export default function Home() {
           </div>
         )}
         {listings && listings.length > 0 && listings.some(listing => listing.category === "reminders") && (
-          <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
-            <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+          <div className="flex flex-col gap-6 ml-auto mr-auto mt-10">
+            <div className="flex w-full flex-col gap-4 autofill:bg-slate-100">
               <h3>Recordatorios</h3>
             </div>
             {
